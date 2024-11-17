@@ -20,7 +20,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.13.0'  
+        python-version: '3.8'  
 
     - name: Install dependencies
       run: |
@@ -33,14 +33,21 @@ jobs:
         echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
         echo "MONGODB_CLUSTER=${{ secrets.MONGODB_CLUSTER }}" >> $GITHUB_ENV
 
+    # Set up PYTHONPATH to ensure app.py can be found
+    - name: Set up PYTHONPATH
+      run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
+    # Run tests for routes
     - name: Run tests for routes
       run: |
         pytest tests/test_routes.py  
 
+    # Run tests for database connection
     - name: Run tests for database connection
       run: |
         pytest tests/test_database.py 
 
+    # Run tests for database write
     - name: Run tests for database write
       run: |
-        pytest tests/test_database_write.py 
+        pytest tests/test_database_write.py
