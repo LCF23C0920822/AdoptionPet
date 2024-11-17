@@ -35,12 +35,12 @@ jobs:
 
     - name: Run tests for routes
       run: |
-        pytest tests/test_route.py  # Ejecuta las pruebas de la ruta
+        pytest tests/test_routes.py  
 
     - name: Run tests for database connection
       run: |
-        pytest tests/test_database.py  # Ejecuta las pruebas de conexión a la base de datos
+        pytest tests/test_database.py 
 
     - name: Run tests for database write
       run: |
-        pytest tests/test_database_write.py  # Ejecuta las pruebas de escritura en la base de datos
+        pytest tests/test_database_write.py 
