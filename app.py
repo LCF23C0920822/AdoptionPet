@@ -1,3 +1,5 @@
+# Miguel Angel Poma Acho
+# c0920822
 from dotenv import load_dotenv 
 from flask import Flask, render_template
 from pymongo import MongoClient
