@@ -1,0 +1,46 @@
+name: CI Pipeline
+
+# This pipeline is executed every time a push is made to main or a pull request is made
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2  
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13.0'  
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  
+
+    - name: Set up environment variables
+      run: |
+        echo "MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }}" >> $GITHUB_ENV
+        echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
+        echo "MONGODB_CLUSTER=${{ secrets.MONGODB_CLUSTER }}" >> $GITHUB_ENV
+
+    - name: Run tests for routes
+      run: |
+        pytest tests/test_route.py  # Ejecuta las pruebas de la ruta
+
+    - name: Run tests for database connection
+      run: |
+        pytest tests/test_database.py  # Ejecuta las pruebas de conexión a la base de datos
+
+    - name: Run tests for database write
+      run: |
+        pytest tests/test_database_write.py  # Ejecuta las pruebas de escritura en la base de datos

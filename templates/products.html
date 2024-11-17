@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+{% block content %}
+    <h1>Products today in offer 50%</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Tag</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.tag }}</td>
+                    <td>{{ product.price }}</td>
+                    <td><img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.name }}" style="width: 50px;"></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
