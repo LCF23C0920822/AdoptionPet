@@ -28,8 +28,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  
 
-        - name: Set up environment variables
-        run: |
+    - name: Set up environment variables
+      run: |
           echo "MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }}" >> $GITHUB_ENV
           echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
           echo "MONGODB_CLUSTER=${{ secrets.MONGODB_CLUSTER }}" >> $GITHUB_ENV
