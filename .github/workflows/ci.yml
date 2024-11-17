@@ -1,5 +1,6 @@
 name: CI Pipeline
-# Miguel Angel Poma Acho   c0920822
+# Miguel Angel Poma Acho
+# c0920822
 # This pipeline is executed every time a push is made to main or a pull request is made
 on:
   push:
