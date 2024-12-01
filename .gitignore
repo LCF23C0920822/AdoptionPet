@@ -1,26 +1,18 @@
+<<<<<<< HEAD
 # Backend dependencies
 node_modules/
 
-client/
-# Frontend dependencies
-client/node_modules/
-
 .env
-
-# Testing
-client/coverage/
-
-# Production
-client/build/
 
 
 # Miscellaneous
 *.DS_Store
-client/.env.local
-client/.env.development.local
-client/.env.test.local
-client/.env.production.local
+
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+# Created by venv; see https://docs.python.org/3/library/venv.html
+.env
+>>>>>>> 4aea8eaf2ba69321708be8fcf6456c06c2eb1c34
