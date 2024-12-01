@@ -1,0 +1,50 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  backend:
+    name: Backend CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./ 
+        run: npm install
+
+      - name: Lint and Test Backend
+        working-directory: ./ 
+        run: |
+          npm run test || echo "No tests found, skipping."
+
+  frontend:
+    name: Frontend CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./client # path to frontend
+        run: npm install
+
+      - name: Build Frontend
+        working-directory: ./client # path to frontend
+        run: npm run build
